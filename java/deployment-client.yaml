@@ -1,0 +1,34 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: grpcdemo-java-client-deployment
+  labels:
+    app: grpcdemo-java-client
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: grpcdemo-java-client
+  template:
+    metadata:
+      labels:
+        app: grpcdemo-java-client
+    spec:
+      containers:
+        - name: grpcdemo-java-client
+          image: grpcdemo-java-client:latest
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 2223
+              name: tcp
+          env:
+            - name: SERVER_URL
+              value: "grpcdemo-java-server-service.default.svc.cluster.local:2222"
+          resources:
+            limits:
+              memory: "128Mi"
+              cpu: "200m"
+            requests:
+              memory: "64Mi"
+              cpu: "100m"
+

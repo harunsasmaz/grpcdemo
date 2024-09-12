@@ -1,0 +1,31 @@
+syntax = "proto3";
+
+option go_package = "instrument/v1;instrumentv1";
+option java_package = "com.grpcdemo.instrument.v1.proto.instrument";
+
+package instrument.v1;
+
+import "instrument/v1/threshold.proto";
+
+enum TradingPairStatus {
+    reserved 3 to max;
+    UNSPECIFIED = 0;
+    ACTIVE = 1;
+    PASSIVE = 2;
+}
+
+message TradingPairItem {
+    string uid = 1;
+    string symbol = 2;
+    string decimal_places = 3;
+}
+
+message TradingPair {
+    string uid = 1;
+    bool buyable = 2;
+    bool sellable = 3;
+    TradingPairStatus status = 4;
+    TradingPairItem left = 5;
+    TradingPairItem right = 6;
+    Threshold threshold = 7;
+}

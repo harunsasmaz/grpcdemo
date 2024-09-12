@@ -1,0 +1,18 @@
+FROM maven:3.9.6-eclipse-temurin-22-jammy AS builder
+
+WORKDIR /app
+
+COPY pom.xml ./
+COPY src ./src
+
+RUN mvn clean package -Pserver
+
+FROM openjdk:22-jdk-slim
+
+WORKDIR /app
+
+COPY --from=builder /app/target/grpcdemo-java-server.jar /app/server.jar
+
+EXPOSE 2222
+
+CMD ["java", "-jar", "server.jar"]

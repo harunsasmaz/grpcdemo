@@ -1,0 +1,29 @@
+syntax = "proto3";
+
+option go_package = "instrument/v1;instrumentv1";
+option java_package = "com.grpcdemo.instrument.v1.proto.instrument";
+
+package instrument.v1;
+
+import "instrument/v1/instrument.proto";
+
+service InstrumentService {
+    rpc Create(CreateRequest) returns (CreateResponse);
+    rpc Get(GetRequest) returns (GetResponse);
+}
+
+message CreateRequest {
+    Instrument instrument = 1;
+}
+
+message CreateResponse {
+    string uid = 1;
+}
+
+message GetRequest {
+    string uid = 1;
+}
+
+message GetResponse {
+    Instrument instrument = 1;
+}

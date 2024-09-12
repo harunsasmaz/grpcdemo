@@ -1,0 +1,13 @@
+syntax = "proto3";
+
+option go_package = "instrument/v1;instrumentv1";
+option java_package = "com.grpcdemo.instrument.v1.proto.instrument";
+
+package instrument.v1;
+
+message Threshold {
+    double min_amount = 1;
+    double max_amount = 2;
+    double min_quantity = 3;
+    double max_quantity = 4;
+}

@@ -1,0 +1,23 @@
+syntax = "proto3";
+
+option go_package = "instrument/v1;instrumentv1";
+option java_package = "com.grpcdemo.instrument.v1.proto.instrument";
+
+package instrument.v1;
+
+import "instrument/v1/trading_pair.proto";
+
+message Instrument {
+    string uid = 1;
+    string name = 2;
+    string symbol = 3;
+    string logo_url = 4;
+    oneof pair {
+        TradingPair try_pair = 6;
+        TradingPair usdt_pair = 7;
+        TradingPair usd_pair = 8;
+    }
+    repeated string labels = 9;
+    int64 version = 10;
+    map<string, string> metadata = 11;
+}
