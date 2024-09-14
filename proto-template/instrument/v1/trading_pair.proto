@@ -1,0 +1,12 @@
+syntax = "proto3";
+
+option go_package = "instrument/v1;instrumentv1";
+option java_package = "com.grpcdemo.instrument.v1.proto.instrument";
+
+package instrument.v1;
+
+// TODO: define trading pair status enum
+
+// TODO: define trading pair item message
+
+// TODO: define trading pair message

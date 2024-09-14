@@ -1,0 +1,34 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: grpcdemo-go-client-deployment
+  labels:
+    app: grpcdemo-go-client
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: grpcdemo-go-client
+  template:
+    metadata:
+      labels:
+        app: grpcdemo-go-client
+    spec:
+      containers:
+        - name: grpcdemo-go-client
+          image: grpcdemo-go-client:latest
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 2223
+              name: tcp
+          env:
+            - name: SERVER_URL
+              value: "grpcdemo-go-server-service.default.svc.cluster.local:2222"
+          resources:
+            limits:
+              memory: "128Mi"
+              cpu: "20m"
+            requests:
+              memory: "64Mi"
+              cpu: "10m"
+

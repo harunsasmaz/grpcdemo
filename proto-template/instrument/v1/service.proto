@@ -1,0 +1,10 @@
+syntax = "proto3";
+
+option go_package = "instrument/v1;instrumentv1";
+option java_package = "com.grpcdemo.instrument.v1.proto.instrument";
+
+package instrument.v1;
+
+// TODO: define instrument service
+
+// TODO: define instrument service request and response messages

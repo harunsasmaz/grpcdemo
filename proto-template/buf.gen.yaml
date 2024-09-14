@@ -1,0 +1,18 @@
+version: v2
+managed:
+  enabled: true
+  disable:
+    - file_option: go_package
+    - file_option: java_package
+plugins:
+  # Go
+  - remote: buf.build/protocolbuffers/go
+    out: gen/go
+  - remote: buf.build/grpc/go
+    out: gen/go
+  # Java
+  - remote: buf.build/protocolbuffers/java
+    out: gen/java
+  - remote: buf.build/grpc/java
+    out: gen/java
+  
