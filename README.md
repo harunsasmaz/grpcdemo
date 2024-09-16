@@ -2,11 +2,15 @@
 
 In this demo, you will learn defining and running a gRPC service in Go and Java.
 
-## Pre-requisites
+## Prerequisites
 
 - Make sure to have [Go](https://go.dev/doc/install) installed on your computer.
 - Make sure to have [Java](https://www.java.com/en/download/help/download_options.html) installed on your computer.
+- Make sure to have [Buf](https://buf.build/docs/installation) installed on your computer.
 - Make sure to have IDEs or text editors to write code in Go, Java and Protobuf.
+    - Visual Studio Code: [Download](https://code.visualstudio.com/download)
+    - IntelliJ IDEA: [Download](https://www.jetbrains.com/idea/download)
+    - Goland: [Download](https://www.jetbrains.com/go/download)
 
 ## Proto
 
@@ -26,6 +30,6 @@ Then, you can read `java` path to learn how to implement a gRPC server and clien
 
 Please follow instructions on `java/README.md`.
 
-## Minikube
-you 
+## Minikube (Extras)
+ 
 In the `README` files under `go` and `java`, you will see deployment files and how to deploy them on your local computer by using [minikube](https://minikube.sigs.k8s.io/docs/). Even though it is optional, it may be helpful to understand deployment of grpc services in [kubernetes](https://kubernetes.io/) clusters with [docker](https://docs.docker.com/) containers.
