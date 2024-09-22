@@ -1,6 +1,6 @@
 package com.grpcdemo.instrument.v1.client;
 
-import com.google.type.DateTime;
+import com.grpcdemo.instrument.v1.interceptor.StreamClientLogInterceptor;
 import com.grpcdemo.instrument.v1.interceptor.UnaryClientLogInterceptor;
 import com.grpcdemo.instrument.v1.proto.instrument.*;
 import io.grpc.ManagedChannel;
@@ -11,7 +11,6 @@ import io.grpc.StatusRuntimeException;
 
 import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.Date;
 import java.util.concurrent.TimeUnit;
 
 public class Main {
@@ -27,6 +26,7 @@ public class Main {
                 .keepAliveTimeout(30, TimeUnit.SECONDS)
                 .usePlaintext()
                 .intercept(new UnaryClientLogInterceptor())
+                .intercept(new StreamClientLogInterceptor())
                 .build();
 
         InstrumentServiceGrpc.InstrumentServiceBlockingStub client = InstrumentServiceGrpc.newBlockingStub(channel);

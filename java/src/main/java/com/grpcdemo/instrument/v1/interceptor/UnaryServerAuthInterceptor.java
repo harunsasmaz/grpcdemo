@@ -1,7 +1,6 @@
 package com.grpcdemo.instrument.v1.interceptor;
 
 import io.grpc.*;
-import io.grpc.Status;
 
 public class UnaryServerAuthInterceptor implements ServerInterceptor {
 
@@ -13,7 +12,11 @@ public class UnaryServerAuthInterceptor implements ServerInterceptor {
     public <ReqT, RespT> ServerCall.Listener<ReqT> interceptCall(
             ServerCall<ReqT, RespT> call,
             Metadata headers,
-            ServerCallHandler<ReqT, RespT> next) {
+            ServerCallHandler<ReqT, RespT> next) 
+    {
+        if (call.getMethodDescriptor().getFullMethodName().equals("instrumentv1.InstrumentService/Get")) {
+            return next.startCall(call, headers);
+        }
 
         String senderName = headers.get(SENDER_NAME_KEY);
         if (senderName == null || !senderName.equals(AUTHORIZED_SENDER)) {

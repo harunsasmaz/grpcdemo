@@ -1,5 +1,7 @@
 package com.grpcdemo.instrument.v1.server;
 
+import com.grpcdemo.instrument.v1.interceptor.StreamServerAuthInterceptor;
+import com.grpcdemo.instrument.v1.interceptor.StreamServerLogInterceptor;
 import com.grpcdemo.instrument.v1.interceptor.UnaryServerAuthInterceptor;
 import com.grpcdemo.instrument.v1.interceptor.UnaryServerLogInterceptor;
 import com.grpcdemo.instrument.v1.logger.LoggerFactory;
@@ -15,21 +17,20 @@ public class Main {
     private static final int port = 2222;
 
     public static void main(String[] args) throws IOException, InterruptedException {
-        // Create the service implementation
         InstrumentServiceImpl service = new InstrumentServiceImpl();
 
-        // Create the server
         Server server = NettyServerBuilder.forPort(port)
                 .keepAliveTime(2, TimeUnit.HOURS)
                 .keepAliveTimeout(30, TimeUnit.SECONDS)
                 .maxInboundMessageSize(1000)
-                .intercept(new UnaryServerAuthInterceptor())
                 .intercept(new UnaryServerLogInterceptor())
+                .intercept(new UnaryServerAuthInterceptor())
+                .intercept(new StreamServerLogInterceptor())
+                .intercept(new StreamServerAuthInterceptor())
                 .addService(service)
                 .build()
                 .start();
 
-        // Add shutdown hook
         Runtime.getRuntime().addShutdownHook(new Thread(() -> {
             logger.info("Shutting down server...");
             server.shutdown();
