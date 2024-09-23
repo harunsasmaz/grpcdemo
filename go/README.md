@@ -36,6 +36,12 @@ brew install minikube
 
 #### Using `go run`
 
+**Size Comparison**
+
+```sh
+go run cmd/size/main.go
+```
+
 **Server**
 
 ```sh

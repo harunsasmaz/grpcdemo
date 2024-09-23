@@ -15,3 +15,13 @@ func UnaryServerAuthInterceptor() grpc.UnaryServerInterceptor {
 		// TODO: call the handler
 	}
 }
+
+func StreamServerAuthInterceptor() grpc.StreamServerInterceptor {
+	return func(srv interface{}, stream grpc.ServerStream, info *grpc.StreamServerInfo, handler grpc.StreamHandler) error {
+		// TODO: retrieve metadata from context
+
+		// TODO: check if auth header exists and correct
+
+		// TODO: call the handler
+	}
+}

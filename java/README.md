@@ -36,6 +36,12 @@ brew install minikube
 
 #### Using `mvn exec`
 
+**Size Comparison**
+
+```sh
+mvn exec:java -Dexec.mainClass="com.grpcdemo.instrument.v1.size.Main"
+```
+
 **Server**
 
 ```sh
